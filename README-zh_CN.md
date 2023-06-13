@@ -1,6 +1,8 @@
 **提示：文档部分由 ChatGPT 生成。**
 
-# Process Trace Utility
+# Process Source Tracer
+
+[English](./README.md) | 简体中文
 
 该项目是一个用于递归查询进程创建者的实用工具。通过追踪进程的父进程链，它可以帮助你确定一个进程的创建者及其上层创建者，以便判断进程是否友善并符合你的期望。
 
