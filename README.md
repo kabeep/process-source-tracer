@@ -4,7 +4,7 @@
 
 English | [简体中文](./README-zh_CN.md)
 
-This project is a utility tool for recursively tracing the creators of a process. By tracking the parent process chain, it helps you identify the creators of a process and their hierarchical relationships, allowing you to determine if a process is friendly and meets your expectations.
+This project is a utility tool for recursively querying process creators on Windows, similar to the `ps` CLI in Linux. By tracing the parent process chain of a process, it can help you determine the creator of a process and its higher-level creators, allowing you to assess if the process is friendly and meets your expectations.
 
 ## Purpose
 
