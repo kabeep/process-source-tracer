@@ -34,4 +34,34 @@ tasklist /V
 tracepid 10101
 ```
 
+或者完成某些操作
+
+```shell
+http-server -p 8081
+# Error: listen EADDRINUSE: address already in use 0.0.0.0:8081
+
+netstat -ano | findstr 8081
+# TCP    0.0.0.0:8081           0.0.0.0:0              LISTENING       38920
+
+tasklist /V | findstr 38920
+# node.exe    38920 Console    1    29,608 K    Unknown    DESKTOP-86L4P1F\Administrator    0:00:00    暂缺
+
+tracepid 38920
+# Parent Process ID: 26484
+# Executable Path:   C:\Program Files\nodejs\node.exe
+# Parent Process ID: 5220
+# Executable Path:   C:\windows\system32\cmd.exe
+# Parent Process ID: 3724
+# Executable Path:   C:\Program Files\nodejs\node.exe
+# 没有可用实例。
+# 
+# Parent Process ID: 3724
+# Executable Path:   C:\Program Files\nodejs\node.exe
+# Reached the root process.
+# End of the recursion.
+
+taskkill /f /t /pid 38920
+# 成功: 已终止 PID 38920 (属于 PID 26484 子进程)的进程。
+```
+
 请注意，该工具使用了批处理脚本编写，可能会受到一些限制。在某些情况下，可能需要使用更高级的系统工具和编程语言来实现更详细和准确的分析。
