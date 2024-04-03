@@ -34,6 +34,34 @@ tasklist /V
 tracepid 10101
 ```
 
+Or do something else:
 
+```shell
+http-server -p 8081
+# Error: listen EADDRINUSE: address already in use 0.0.0.0:8081
+
+netstat -ano | findstr 8081
+# TCP    0.0.0.0:8081           0.0.0.0:0              LISTENING       38920
+
+tasklist /V | findstr 38920
+# node.exe    38920 Console    1    29,608 K    Unknown    DESKTOP-86L4P1F\Administrator    0:00:00    暂缺
+
+tracepid 38920
+# Parent Process ID: 26484
+# Executable Path:   C:\Program Files\nodejs\node.exe
+# Parent Process ID: 5220
+# Executable Path:   C:\windows\system32\cmd.exe
+# Parent Process ID: 3724
+# Executable Path:   C:\Program Files\nodejs\node.exe
+# No available instances.
+# 
+# Parent Process ID: 3724
+# Executable Path:   C:\Program Files\nodejs\node.exe
+# Reached the root process.
+# End of the recursion.
+
+taskkill /f /t /pid 38920
+# Success: Terminated the process with PID 38920 (which belongs to the child process of PID 26484).
+```
 
 Please note that this tool is implemented using batch scripting, which may have certain limitations. In some cases, more advanced system tools and programming languages may be required for more detailed and accurate analysis.
